@@ -10,4 +10,9 @@ setup(
     download_url = "https://github.com/ogdans3/gsse-python-client/archive/0.1.tar.gz",
     keywords = ["global", "simulated", "stock", "exchange"], # arbitrary keywords
     classifiers = [],
+
+    # Dependent packages (distributions)
+    install_requires=[
+        "requests",
+    ],
 )
