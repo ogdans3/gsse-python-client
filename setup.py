@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
     name = "gsse_python_client",
     packages = ["gsse_python_client"], # this must be the same as the name above
-    version = "0.1.2",
+    version = "0.1.3",
     description = "Python client for global simualtion stock exchange",
     author = "Gabriel Berthling-Hansen",
     author_email = "gabrielbhansen@hotmail.com",
