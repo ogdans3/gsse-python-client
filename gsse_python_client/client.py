@@ -12,5 +12,9 @@ class Client:
         self.session.get("http://localhost:8000/set/exchange", params = {"exchange": exchange})
 
     def requestTimeAdvance(self, duration):
-        r = self.session.get("http://localhost:8000/requestTimeAdvance", params={"duration": duration})
+        r = self.session.get("http://localhost:8000/requestTimeAdvance", params= {"duration": duration})
         return r.json()
+
+    def setDay(self, day):
+        r = self.session.get("http://localhost:8000/set/day", params = {"day": day})
+        return r.status_code;
