@@ -18,3 +18,11 @@ class Client:
     def setDay(self, day):
         r = self.session.get("http://localhost:8000/set/day", params = {"day": day})
         return r.status_code;
+
+    def createTestSet(self, testSet):
+        r = self.session.post("http://localhost:8000/create/testSet", json = testSet);
+        return r.status_code;
+
+    def startTestSet(self):
+        r = self.session.get("http://localhost:8000/start/testSet");
+        return r.status_code;
