@@ -1,4 +1,5 @@
 import requests
+import json
 
 class Client:
     def __init__(self):
@@ -37,6 +38,29 @@ class Client:
     def createTestSet(self, testSet):
         r = self.session.post(self.buildBaseUrl() + "/create/testSet", json = testSet)
         return r.status_code
+
+    def wallet(self):
+        r = self.session.get(self.buildBaseUrl() + "/wallet")
+        return r.json()
+
+    def buy(self, ticker, amount, price, walletPercentage, priceLeeway):
+        r = self.session.get(self.buildBaseUrl() + "/buy", params = {"ticker": ticker, "amount": amount, "pricePerStock": price, "walletPercentage": walletPercentage, "priceLeeway": priceLeeway})
+        return r.text
+
+    def sell(self, ticker, amount, price, stockPercentage, priceLeeway):
+        r = self.session.get(self.buildBaseUrl() + "/sell", params = {"ticker": ticker, "amount": amount, "pricePerStock": price, "stockPercentage": stockPercentage, "priceLeeway": priceLeeway})
+        return r.status_code
+
+    def getSettings(self):
+        r = self.session.get(self.buildBaseUrl() + "/get/settings")
+        return r.json()
+
+    def setSettings(self, settings):
+        print("Settings", settings)
+        r = self.session.get(self.buildBaseUrl() + "/set/settings", params = {"settings": json.dumps(settings)})
+        return r.json()
+
+
 
     def startTestSet(self):
         r = self.session.get(self.buildBaseUrl() + "/start/testSet")
