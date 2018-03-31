@@ -1,12 +1,17 @@
 from client import Client
+from testSet import TestSet
 import json
 import time
 
 client = Client()
 client.setExchange("OSE")
 
-
-testSet = {
+testSet = {"testSet": [
+    TestSet(stocks=["DNB"], fromTime="20180122", toTime="20180125").toJSON(),
+    TestSet(stocks=["DNB", "AKER", "AFG"], fromTime="20180122", toTime="20180125").toJSON(),
+]}
+print("Testset: ", testSet);
+"""testSet = {
     "testSet": [
         {
             "fromTime": "20180122",
@@ -19,7 +24,8 @@ testSet = {
             "tickers": ["DNB", "AKER", "AFG"]
         }
     ]
-}
+}"""
+
 print(testSet)
 client.createTestSet(testSet)
 client.startTestSet()
