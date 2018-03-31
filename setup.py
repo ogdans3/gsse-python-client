@@ -1,5 +1,5 @@
 from distutils.core import setup
-version = "0.1.7"
+version = "0.1.8"
 setup(
     name = "gsse_python_client",
     packages = ["gsse_python_client"], # this must be the same as the name above

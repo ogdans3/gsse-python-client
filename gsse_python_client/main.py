@@ -24,34 +24,44 @@ print(testSet)
 client.createTestSet(testSet)
 client.startTestSet()
 print("Settings: ", client.getSettings())
+
 client.setSettings({
-    "startingCapital": 1000
+    "startingCapital": 100000,
+    "resolution": 60
 })
 print("Settings: ", client.getSettings())
 
 for i in range(0, 10):
-    data = client.requestTimeAdvance(3600)
-    print("Data: ", data)
+    timewindows = client.requestTimeAdvance(3600)
+    timewindow = timewindows[-1]
+    try:
+        print("Tick: ", timewindow.getTick("DNB", -1))
+    except:
+        pass
 
 print("Wallet: ", client.wallet())
-client.buy("DNB", None, 153.5, 0.5, 0.05)
+client.buy("DNB", 1000, 153.5, None, 0.05)
 print("Wallet: ", client.wallet())
 
 for i in range(0, 50):
-    data = client.requestTimeAdvance(3600)
-    print(data)
+    timewindows = client.requestTimeAdvance(60)
+    timewindow = timewindows[-1]
+    try:
+        print("Tick: ", timewindow.getTick("DNB", -1))
+    except:
+        pass
     print("Wallet: ", client.wallet())
 
 print("Trying to sell DNB position")
 
-status = client.sell("DNB", None, 153.5, 0.5, 0.05)
+status = client.sell("DNB", None, 153.5, 1, 0.05)
 print(status)
-time.sleep(5)
-for i in range(0, 50):
-    data = client.requestTimeAdvance(3600)
-    print(data)
-    print("Wallet: ", client.wallet())
-
+time.sleep(1)
+for i in range(0, 3600*50):
+    timewindows = client.requestTimeAdvance(60, True)
+    print(timewindows)
+    print(i, "Wallet: ", client.wallet())
+print("Finished")
 
 
 

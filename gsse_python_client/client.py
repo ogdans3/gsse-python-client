@@ -1,6 +1,8 @@
 import requests
 import json
 
+from timewindow import TimeWindows
+
 class Client:
     def __init__(self):
         self.session = requests.session()
@@ -27,9 +29,12 @@ class Client:
     def setExchange(self, exchange):
         self.session.get(self.buildBaseUrl() + "/set/exchange", params = {"exchange": exchange})
 
-    def requestTimeAdvance(self, duration):
+    def requestTimeAdvance(self, duration, returnRawJSON=False):
         r = self.session.get(self.buildBaseUrl() + "/requestTimeAdvance", params= {"duration": duration})
-        return r.json()
+        json = r.json()
+        if returnRawJSON:
+            return json
+        return TimeWindows(json)
 
     def setDay(self, day):
         r = self.session.get(self.buildBaseUrl() + "/set/day", params = {"day": day})
