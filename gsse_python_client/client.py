@@ -1,7 +1,7 @@
 import requests
 import json
 
-from timewindow import TimeWindows
+from gsse_python_client.timewindow import TimeWindows
 
 class Client:
     def __init__(self):

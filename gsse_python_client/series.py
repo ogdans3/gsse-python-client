@@ -1,4 +1,4 @@
-from tick import Tick
+from gsse_python_client.tick import Tick
 
 class Series:
     def __init__(self, data):

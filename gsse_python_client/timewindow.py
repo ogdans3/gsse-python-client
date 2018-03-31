@@ -1,7 +1,6 @@
-from series import Series
+from gsse_python_client.series import Series
 import numbers
 
-#TODO: Add convenience methods, such as len and iterate
 class TimeWindows:
     def __init__(self, timewindows):
         self.timewindows = []
