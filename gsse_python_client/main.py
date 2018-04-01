@@ -50,7 +50,7 @@ client.buy("DNB", 1000, 153.5, None, 0.05)
 print("Wallet: ", client.wallet())
 
 for i in range(0, 50):
-    timewindows = client.requestTimeAdvance(60)
+    timewindows = client.requestTimeAdvance(3600)
     timewindow = timewindows[-1]
     try:
         print("Tick: ", timewindow.getTick("DNB", -1))
@@ -64,7 +64,7 @@ status = client.sell("DNB", None, 153.5, 1, 0.05)
 print(status)
 time.sleep(1)
 for i in range(0, 3600*50):
-    timewindows = client.requestTimeAdvance(60, True)
+    timewindows = client.requestTimeAdvance(3600, True)
     print(timewindows)
     print(i, "Wallet: ", client.wallet())
 print("Finished")
