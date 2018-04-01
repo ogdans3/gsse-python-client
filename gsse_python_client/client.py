@@ -32,7 +32,6 @@ class Client:
     def requestTimeAdvance(self, duration, returnRawJSON=False):
         r = self.session.get(self.buildBaseUrl() + "/requestTimeAdvance", params= {"duration": duration})
         json = r.json()
-        print("Code: ", r.status_code)
         if returnRawJSON:
             return json, r.status_code
         return TimeWindows(json), r.status_code
@@ -62,7 +61,6 @@ class Client:
         return r.json(), r.status_code
 
     def setSettings(self, settings):
-        print("Settings", settings)
         r = self.session.get(self.buildBaseUrl() + "/set/settings", params = {"settings": json.dumps(settings)})
         return r.json(), r.status_code
 
