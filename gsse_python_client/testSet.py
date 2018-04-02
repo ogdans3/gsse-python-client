@@ -1,9 +1,10 @@
 
 class TestSet:
-    def __init__(self, stocks=[], fromTime="", toTime=""):
+    def __init__(self, stocks=[], fromTime="", toTime="", exchange=""):
         self.tickers = stocks
         self.fromTime = fromTime
         self.toTime = toTime
+        self.exchange = exchange
 
     def addStock(self, ticker):
         self.tickers.append(ticker)
@@ -26,11 +27,18 @@ class TestSet:
     def getToTime(self):
         return self.toTime
 
+    def getExchange(self):
+        return self.exchange
+
+    def setExchange(self, exchange):
+        self.exchange = exchange
+
     def toJSON(self):
         obj = {}
         obj["tickers"] = self.getStocks()
         obj["fromTime"] = self.getFromTime()
         obj["toTime"] = self.getToTime()
+        obj["exchange"] = self.getExchange()
         return obj
 
 

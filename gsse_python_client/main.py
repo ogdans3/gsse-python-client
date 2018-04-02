@@ -4,11 +4,10 @@ import json
 import time
 
 client = Client()
-client.setExchange("OSE")
 
 testSet = {"testSet": [
-    TestSet(stocks=["DNB"], fromTime="20180122", toTime="20180125").toJSON(),
-    TestSet(stocks=["DNB", "AKER", "AFG"], fromTime="20180122", toTime="20180125").toJSON(),
+    TestSet(stocks=["DNB"], fromTime="20180122", toTime="20180125", exchange="OSE").toJSON(),
+    TestSet(stocks=["DNB", "AKER", "AFG"], fromTime="20180122", toTime="20180125", exchange="OSE").toJSON(),
 ]}
 print("Testset: ", testSet);
 """testSet = {
@@ -16,12 +15,14 @@ print("Testset: ", testSet);
         {
             "fromTime": "20180122",
             "toTime": "20180125",
-            "tickers": ["DNB"]
+            "tickers": ["DNB"],
+            "exchange":"OSE"
         },
         {
             "fromTime": "20180122",
             "toTime": "20180125",
             "tickers": ["DNB", "AKER", "AFG"]
+            "exchange":"OSE"
         }
     ]
 }"""
@@ -29,13 +30,11 @@ print("Testset: ", testSet);
 print(testSet)
 client.createTestSet(testSet)
 client.startTestSet()
-print("Settings: ", client.getSettings())
 
 client.setSettings({
     "startingCapital": 100000,
     "resolution": 60
 })
-print("Settings: ", client.getSettings())
 
 for i in range(0, 10):
     timewindows = client.requestTimeAdvance(3600)
