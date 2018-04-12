@@ -1,5 +1,5 @@
 from distutils.core import setup
-version = "0.1.14"
+version = "0.1.15"
 setup(
     name = "gsse_python_client",
     packages = ["gsse_python_client"], # this must be the same as the name above
@@ -15,5 +15,6 @@ setup(
     # Dependent packages (distributions)
     install_requires=[
         "requests",
+        "requests_futures"
     ],
 )
